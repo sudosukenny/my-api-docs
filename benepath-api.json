@@ -1,0 +1,86 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "CM-BE-FnSearchBene",
+    "description": "This is the part of document re-indexing feature 317801",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://apimbenepathnj.azure-api.net/search"
+    }
+  ],
+  "paths": {
+    "/": {
+      "post": {
+        "summary": "Search document by documentId",
+        "operationId": "search",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "documentId": {
+                    "type": "string",
+                    "description": "The ID of the document to search for"
+                  }
+                },
+                "required": ["documentId"]
+              },
+              "examples": {
+                "sample": {
+                  "summary": "Example documentId",
+                  "value": { "documentId": "abc123" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Request succeeded. The document was found and returned."
+          },
+          "400": {
+            "description": "Bad Request. The request body is missing or invalid."
+          },
+          "401": {
+            "description": "Unauthorized. The API key is missing or invalid."
+          },
+          "403": {
+            "description": "Forbidden. You do not have permission to access this resource."
+          },
+          "404": {
+            "description": "Not Found. The document with the given ID does not exist."
+          },
+          "500": {
+            "description": "Internal Server Error. Something went wrong on the server."
+          }
+        },
+        "security": [
+          { "apiKeyHeader": [] },
+          { "apiKeyQuery": [] }
+        ]
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "apiKeyHeader": {
+        "type": "apiKey",
+        "name": "Ocp-Apim-Subscription-Key",
+        "in": "header"
+      },
+      "apiKeyQuery": {
+        "type": "apiKey",
+        "name": "subscription-key",
+        "in": "query"
+      }
+    }
+  },
+  "security": [
+    { "apiKeyHeader": [] },
+    { "apiKeyQuery": [] }
+  ]
+}
