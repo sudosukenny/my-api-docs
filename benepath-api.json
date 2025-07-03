@@ -7,7 +7,7 @@
   },
   "servers": [
     {
-      "url": "https://apimbenepathnj.azure-api.net/search"
+      "url": "https://cors-anywhere.herokuapp.com/https://apimbenepathnj.azure-api.net/FnConvertBlobToBase64/BlobToBase64"
     }
   ],
   "paths": {
